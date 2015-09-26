@@ -6,6 +6,10 @@ var config = require('./webpack.config.dev');
 var app = express();
 var compiler = webpack(config);
 
+var MongoClient = require('mongodb').MongoClient;
+var assert = require('assert');
+var mongoUrl = 'mongodb://localhost:27017/np';
+
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath
@@ -13,7 +17,20 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get('*', function(req, res) {
+app.get('/api/games', function(req, res) {
+  MongoClient.connect(mongoUrl, function(err, db) {
+    assert.equal(err, null);
+    const games = db.collection('games');
+    games.find({}).toArray(function(err, docs){
+      assert.equal(err, null);
+
+      res.json(docs);
+      db.close();
+    });
+  });
+});
+
+app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
