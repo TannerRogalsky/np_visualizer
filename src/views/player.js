@@ -4,7 +4,7 @@ import {Row, Col} from 'react-bootstrap';
 const Player = React.createClass({
   render() {
     return (
-      <Col md={12}>
+      <Col md={6}>
         <h3>{this.props.alias}</h3>
         <Row>
           <Col md={6}>
