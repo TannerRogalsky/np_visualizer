@@ -17,7 +17,9 @@ const Game = React.createClass({
 
   render() {
     const gameId = Number(this.props.params.gameId);
-    const ticks = this.props.games.filterNot(game => game.gameId === gameId);
+    const ticks = this.props.games.filterNot(function(game) {
+      return game.gameId === gameId;
+    });
 
     return (
       <div>

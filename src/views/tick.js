@@ -19,7 +19,9 @@ const Tick = React.createClass({
   render() {
     const gameId = Number(this.props.params.gameId);
     const tickId = Number(this.props.params.tickId);
-    const tick = this.props.games.find(game => game.gameId === gameId && game.tick === tickId).data;
+    const tick = this.props.games.find(function(game) {
+      return game.gameId === gameId && game.tick === tickId;
+    }).data;
 
     return (
       <div>
