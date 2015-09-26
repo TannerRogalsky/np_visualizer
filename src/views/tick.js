@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
+import Player from './player';
 
 const Tick = React.createClass({
   propTypes: {
@@ -24,9 +25,17 @@ const Tick = React.createClass({
     }).data;
 
     return (
-      <div>
+      <div className="container-fluid">
+        <h1>{tick.name}</h1>
         {
-          tick.name
+          Object.keys(tick.players).map(function(playerUid) {
+            const player = tick.players[playerUid];
+            return (
+              <div className='row'>
+                <Player key={playerUid} {...player} />
+              </div>
+            );
+          })
         }
       </div>
     );
