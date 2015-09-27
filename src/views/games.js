@@ -11,16 +11,22 @@ const Games = React.createClass({
   },
 
   render() {
+    const uniqueGames = this.props.games.reduce(function(uniqueGames, game) {
+      uniqueGames[game.gameId] = game;
+      return uniqueGames;
+    }, {});
+
     return (
       <Layout>
         <h1>Games</h1>
         <ul>
           {
-            this.props.games.map(function(game) {
+            Object.keys(uniqueGames).map(function(gameId) {
+              const game = uniqueGames[gameId];
               const data = game.data;
               return (
                 <li key={game._id}>
-                  <Link to={`/game/${game.gameId}`}>{data.name}</Link>
+                  <Link to={`/game/${gameId}`}>{data.name}</Link>
                 </li>
               );
             })

@@ -18,8 +18,11 @@ const Game = React.createClass({
 
   render() {
     const gameId = Number(this.props.params.gameId);
-    const ticks = this.props.games.filterNot(function(game) {
+    const ticks = this.props.games.filter(function(game) {
       return game.gameId === gameId;
+    });
+    const sortedTicks = ticks.sort(function(a, b){
+      return a.tick - b.tick;
     });
 
     return (
@@ -27,7 +30,7 @@ const Game = React.createClass({
         <h2>Ticks</h2>
         <ul>
           {
-            ticks.map(function(tick) {
+            sortedTicks.map(function(tick) {
               return (
                 <li key={tick._id}>
                   <Link to={`/game/${tick.gameId}/tick/${tick.tick}`}>{tick.tick}</Link>
