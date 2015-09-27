@@ -13,7 +13,9 @@ const Layout = React.createClass({
             <li className="active">Tick</li>
           </ol>
         </nav>
-        {this.props.children}
+        <div className='container-fluid'>
+          {this.props.children}
+        </div>
       </div>
     );
   }

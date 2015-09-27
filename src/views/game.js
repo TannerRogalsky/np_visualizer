@@ -24,15 +24,18 @@ const Game = React.createClass({
 
     return (
       <Layout>
-        {
-          ticks.map(function(tick) {
-            return (
-              <div key={tick._id}>
-                <Link to={`/game/${tick.gameId}/tick/${tick.tick}`}>{tick.tick}</Link>
-              </div>
-            );
-          })
-        }
+        <h2>Ticks</h2>
+        <ul>
+          {
+            ticks.map(function(tick) {
+              return (
+                <li key={tick._id}>
+                  <Link to={`/game/${tick.gameId}/tick/${tick.tick}`}>{tick.tick}</Link>
+                </li>
+              );
+            })
+          }
+        </ul>
       </Layout>
     );
   }

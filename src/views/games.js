@@ -13,15 +13,19 @@ const Games = React.createClass({
   render() {
     return (
       <Layout>
-        {
-          this.props.games.map(function(game) {
-            return (
-              <div key={game._id}>
-                <Link to={`/game/${game.gameId}`}>{game.gameId}</Link>
-              </div>
-            );
-          })
-        }
+        <h1>Games</h1>
+        <ul>
+          {
+            this.props.games.map(function(game) {
+              const data = game.data;
+              return (
+                <li key={game._id}>
+                  <Link to={`/game/${game.gameId}`}>{data.name}</Link>
+                </li>
+              );
+            })
+          }
+        </ul>
       </Layout>
     );
   }
