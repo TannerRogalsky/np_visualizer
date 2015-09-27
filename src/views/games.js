@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
+import Layout from './layout';
 
 const Games = React.createClass({
   getDefaultProps() {
@@ -11,7 +12,7 @@ const Games = React.createClass({
 
   render() {
     return (
-      <div>
+      <Layout>
         {
           this.props.games.map(function(game) {
             return (
@@ -21,7 +22,7 @@ const Games = React.createClass({
             );
           })
         }
-      </div>
+      </Layout>
     );
   }
 });

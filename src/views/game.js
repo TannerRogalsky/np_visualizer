@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
+import Layout from './layout';
 
 const Game = React.createClass({
   propTypes: {
@@ -22,7 +23,7 @@ const Game = React.createClass({
     });
 
     return (
-      <div>
+      <Layout>
         {
           ticks.map(function(tick) {
             return (
@@ -32,7 +33,7 @@ const Game = React.createClass({
             );
           })
         }
-      </div>
+      </Layout>
     );
   }
 });
